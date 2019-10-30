@@ -6,13 +6,10 @@ jobs:
   repo-sync:
     runs-on: ubuntu-latest
     steps:
-    - name: repo-sync
-      uses: wei/git-sync@v1
-      env:
-        SOURCE_REPO: "git@github.com:jsdrupal/admin_ui.git"
-        SOURCE_BRANCH: "refs/remotes/source/*"
-        DESTINATION_REPO: "git@git.drupal.org:project/admin_ui.git"
-        DESTINATION_BRANCH: "refs/heads/*"
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      with:
-        args: $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
+      - uses: webfactory/ssh-agent@v0.1.1
+        with:
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: repo-sync
+        run: |
+          git remote add drupal git@git.drupal.org:project/admin_ui.git
+          git push drupal HEAD
