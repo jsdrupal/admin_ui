@@ -14,4 +14,4 @@ jobs:
             ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
             ssh-keyscan drupal.org >> ~/.ssh/known_hosts
             git remote add drupal git@git.drupal.org:project/admin_ui.git
-            git push drupal HEAD
+            GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push drupal HEAD
