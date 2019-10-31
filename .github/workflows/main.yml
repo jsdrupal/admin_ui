@@ -13,4 +13,5 @@ jobs:
             eval `ssh-agent -s`
             ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
             git remote add drupal git@git.drupal.org:project/admin_ui.git
+            git branch
             GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push drupal justafish-patch-1
