@@ -13,5 +13,6 @@ jobs:
             eval `ssh-agent -s`
             ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
             ssh-keyscan drupal.org >> ~/.ssh/known_hosts
+            cat ~/.ssh/known_hosts
             git remote add drupal git@git.drupal.org:project/admin_ui.git
             GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push drupal HEAD
