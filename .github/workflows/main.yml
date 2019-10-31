@@ -6,13 +6,12 @@ jobs:
   repo-sync:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: repo-sync
         run: |
             mkdir -p ~/.ssh
             eval `ssh-agent -s`
             ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
             ssh-keyscan drupal.org >> ~/.ssh/known_hosts
-            pwd
-            ls
             git remote add drupal git@git.drupal.org:project/admin_ui.git
             GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git push drupal HEAD
