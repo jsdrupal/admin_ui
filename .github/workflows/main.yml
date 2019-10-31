@@ -14,4 +14,5 @@ jobs:
             ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
             git remote add drupal git@git.drupal.org:project/admin_ui.git
             git checkout -b local-branch
+            REMOTE_BRANCH=$(echo ${GITHUB_REF} | sed 's/refs\/heads\///g') echo ${REMOTE_BRANCH}
             GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" REMOTE_BRANCH=$(echo ${GITHUB_REF} | sed 's/refs\/heads\///g') git push drupal local-branch:${REMOTE_BRANCH}
