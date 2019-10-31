@@ -7,13 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-        with:
-          ref: justafish-patch-1
       - name: repo-sync
         run: |
             mkdir -p ~/.ssh
             eval `ssh-agent -s`
             ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
             git remote add drupal git@git.drupal.org:project/admin_ui.git
-            git branch
-            GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push drupal justafish-patch-1
+            git checkout -b local-branch
+            GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push drupal ${GITHUB_REF}
