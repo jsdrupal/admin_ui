@@ -1,9 +1,9 @@
-name: Delete Remote Branch
+name: drupal.org sync
 
 on: [delete]
 
 jobs:
-  repo-sync-delete-branch:
+  delete-branch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

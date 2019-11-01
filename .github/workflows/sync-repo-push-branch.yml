@@ -1,9 +1,9 @@
-name: Push to Remote Branch
+name: drupal.org sync
 
 on: [push]
 
 jobs:
-  repo-sync-push-branch:
+  push-branch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
