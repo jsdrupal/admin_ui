@@ -3,7 +3,7 @@ name: Push to Remote Branch
 on: [push]
 
 jobs:
-  repo-sync:
+  repo-sync-push-branch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -15,6 +15,7 @@ jobs:
             git remote add drupal git@git.drupal.org:project/admin_ui.git
             REMOTE_BRANCH=$(echo -n ${GITHUB_REF} | sed 's/refs\/heads\///g')
             GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+            echo ${GIT_SSH_COMMAND}
             git push drupal --delete ${REMOTE_BRANCH} || true
             git checkout -b local-branch
             git push drupal local-branch:${REMOTE_BRANCH}
