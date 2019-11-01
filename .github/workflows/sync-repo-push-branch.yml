@@ -1,0 +1,20 @@
+name: drupal.org sync
+
+on: [push]
+
+jobs:
+  push-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Push to remote branch
+        run: |
+            mkdir -p ~/.ssh
+            eval `ssh-agent -s`
+            ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+            git remote add drupal git@git.drupal.org:project/admin_ui.git
+            REMOTE_BRANCH=$(echo -n ${GITHUB_REF} | sed 's/refs\/heads\///g')
+            GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+            GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal --delete ${REMOTE_BRANCH} || true
+            GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git checkout -b local-branch
+            GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal local-branch:${REMOTE_BRANCH}
