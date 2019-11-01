@@ -1,6 +1,9 @@
 name: drupal.org sync
 
-on: [push]
+on:
+  push:
+    branches:
+      - 8.x-1.x
 
 jobs:
   push-branch:
@@ -15,6 +18,7 @@ jobs:
             git remote add drupal git@git.drupal.org:project/admin_ui.git
             REMOTE_BRANCH=$(echo -n ${GITHUB_REF} | sed 's/refs\/heads\///g')
             GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+            # Delete the remote branch because drupal.org doesn't allow force push
             GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal --delete ${REMOTE_BRANCH} || true
             GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git checkout -b local-branch
             GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal local-branch:${REMOTE_BRANCH}
