@@ -11,23 +11,30 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: docker://node:13
+      - name: Mirror this branch on drupal.org
+        run: |
+          mkdir -p ~/.ssh
+          eval `ssh-agent -s`
+          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+          git config --global user.name "jsdrupal-bot"
+          git config --global user.email "jsdrupal-bot@3630107.no-reply.drupal.org"
+          git remote add drupal git@git.drupal.org:project/admin_ui.git
+          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+          # Set BRANCH to e.g. "8.x-1.x"
+          BRANCH=$(echo -n ${GITHUB_REF} | sed 's/refs\/heads\///g')
+          GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal ${BRANCH}:${BRANCH}-src
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Run the build
         run: yarn build
-      - name: Push to remote branch
+      - name: Push to the build artifacts branch
         run: |
-            mkdir -p ~/.ssh
-            eval `ssh-agent -s`
-            ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
-            git config --global user.name "jsdrupal-bot"
-            git config --global user.email "jsdrupal-bot@3630107.no-reply.drupal.org"
-            git add -f dist
-            git commit -m "Commit build artifacts"
-            git remote add drupal git@git.drupal.org:project/admin_ui.git
-            REMOTE_BRANCH=$(echo -n ${GITHUB_REF} | sed 's/refs\/heads\///g')
-            GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
-            # Delete the remote branch because drupal.org doesn't allow force push
-            GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal --delete ${REMOTE_BRANCH} || true
-            GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git checkout -b local-branch
-            GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal local-branch:${REMOTE_BRANCH}
+          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+          # Set BRANCH to e.g. "8.x-1.x"
+          BRANCH=$(echo -n ${GITHUB_REF} | sed 's/refs\/heads\///g')
+          GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git clone -b 8.x-1.x git@git.drupal.org:project/admin_ui.git ../admin_ui_drupalorg
+          rm -rf .git
+          mv ../admin_ui_drupalorg/.git .
+          GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git add -A
+          GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git commit -m "Commit build artifacts for https://github.com/jsdrupal/admin_ui/commit/${GITHUB_SHA}"
+          GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push origin ${BRANCH}:${BRANCH}
