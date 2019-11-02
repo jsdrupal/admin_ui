@@ -21,4 +21,4 @@ jobs:
           composer require drupal-composer/drupal-scaffold composer/installers
           composer config repositories.drupal composer https://packages.drupal.org/8
           composer config repositories.admin_ui '{"type": "path", "url": "../admin_ui", "symlink": true}'
-          composer require drupal/core:8 drupal/admin_ui:*
+          composer require drupal/core:8.9.x-dev drupal/admin_ui:@dev
