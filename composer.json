@@ -2,5 +2,8 @@
     "name": "drupal/admin_ui",
     "type": "drupal-module",
     "description": "Provides a React based admin application.",
-    "license": "GPL-2.0+"
+    "license": "GPL-2.0+",
+    "require": {
+        "drupal/jsonapi_cross_bundles": "*"
+    }
 }
