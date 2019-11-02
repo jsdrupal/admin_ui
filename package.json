@@ -10,6 +10,12 @@
     "prettier": "prettier --write vfancy/**/*.js component/**/*.js"
   },
   "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
     "parcel": "^1.12.4",
     "prettier": "^1.18.2"
   },
@@ -17,6 +23,43 @@
     "@emotion/core": "^10.0.22",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "react-hooks",
+      "jsx-a11y"
+    ],
+    "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "react/prop-types": [
+        "off"
+      ],
+      "react/display-name": [
+        "off"
+      ]
+    }
   },
   "prettier": {
     "trailingComma": "es5",
