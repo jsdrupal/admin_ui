@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  test-javascript:
+  test-php:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -17,7 +17,7 @@ jobs:
         run: |
           mkdir ../drupal
           cd ../drupal
-          composer init -n --name=drupal/test_admin_ui
+          composer init -n --name=drupal/test_admin_ui --stability=dev
           composer require drupal-composer/drupal-scaffold composer/installers
           composer config repositories.drupal composer https://packages.drupal.org/8
           composer config repositories.admin_ui '{"type": "path", "url": "../admin_ui", "symlink": true}'
