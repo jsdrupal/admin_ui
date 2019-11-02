@@ -1,6 +1,11 @@
 name: Test JavaScript
 
-on: [push]
+on:
+  push:
+    branches:
+      - 8.x-1.x
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   test-javascript:
