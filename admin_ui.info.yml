@@ -1,0 +1,12 @@
+name: 'Admin UI'
+type: module
+description: 'Provides a React based administration UI for some routes'
+core: 8.x
+dependencies:
+#  - drupal:file
+#  - drupal:serialization
+#  - drupal:rest
+#  - jsonapi:jsonapi
+#  - jsonapi_tables:jsonapi_tables
+#  - jsonapi_support:jsonapi_support
+#  - openapi:openapi
