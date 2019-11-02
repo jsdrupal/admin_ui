@@ -1,0 +1,7 @@
+node_modules
+
+# Parcel cache
+.cache
+
+# Parcel build for vfancy
+dist

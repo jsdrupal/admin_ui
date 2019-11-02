@@ -1,0 +1,6 @@
+admin_ui.system.hello_world:
+  path: '/hello-world'
+  defaults:
+    _controller: '\Drupal\admin_ui\Controller\VfancyController::content'
+  requirements:
+    _permission: 'access administration pages'
