@@ -22,3 +22,4 @@ jobs:
           composer config repositories.drupal composer https://packages.drupal.org/8
           composer config repositories.admin_ui '{"type": "path", "url": "../admin_ui", "symlink": true}'
           composer require drupal/core:8.9.x-dev drupal/admin_ui:@dev
+          ls -lha modules/contrib
