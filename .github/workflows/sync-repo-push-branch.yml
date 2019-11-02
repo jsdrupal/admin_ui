@@ -22,6 +22,7 @@ jobs:
           GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
           # Set BRANCH to e.g. "8.x-1.x"
           BRANCH=$(echo -n ${GITHUB_REF} | sed 's/refs\/heads\///g')
+          git rev-parse --abbrev-ref HEAD
           GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal ${BRANCH}:${BRANCH}-src
       - name: Install dependencies
         run: yarn install --frozen-lockfile
