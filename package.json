@@ -6,7 +6,7 @@
   "repository": "https://github.com/jsdrupal/admin_ui",
   "scripts": {
     "build": "parcel build --public-url=MODULE_LOCATION/dist vfancy/index.html",
-    "test": "eslint --max-warnings=0 vfancy/**/*.js component/**/*.js",
+    "test": "eslint --max-warnings=0 vfancy/**/* component/**/*",
     "prettier": "prettier --write vfancy/**/*.js component/**/*.js"
   },
   "devDependencies": {
