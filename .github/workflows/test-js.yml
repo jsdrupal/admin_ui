@@ -1,0 +1,14 @@
+name: Test JavaScript
+
+on: [push]
+
+jobs:
+  test-javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: docker://node:13
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Run tests
+        run: yarn test
