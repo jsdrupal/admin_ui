@@ -24,15 +24,10 @@ jobs:
           BRANCH=$(echo -n ${GITHUB_REF} | sed 's/refs\/heads\///g')
           git checkout -b temp-local-branch
           GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal temp-local-branch:${BRANCH}-src
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Run the build
-        run: yarn build
-      - name: Push to the build artifacts branch
-        run: |
-          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
-          # Set BRANCH to e.g. "8.x-1.x"
-          BRANCH=$(echo -n ${GITHUB_REF} | sed 's/refs\/heads\///g')
+          # Install dependencies
+          # Run the build
+          yarn build
+          # Push to the build artifacts branch
           GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git clone -b 8.x-1.x git@git.drupal.org:project/admin_ui.git ../admin_ui_drupalorg
           rm -rf .git
           mv ../admin_ui_drupalorg/.git .
