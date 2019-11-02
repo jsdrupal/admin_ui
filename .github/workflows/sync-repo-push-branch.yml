@@ -1,4 +1,4 @@
-name: drupal.org sync
+name: drupal.org Sync
 
 on:
   push:
