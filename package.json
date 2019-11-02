@@ -1,0 +1,17 @@
+{
+  "name": "vfancy",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "GPL-2.0+",
+  "repository": "https://github.com/jsdrupal/admin_ui",
+  "scripts": {
+    "build": "parcel build --public-url=MODULE_LOCATION/dist vfancy/index.html"
+  },
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  },
+  "dependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  }
+}
