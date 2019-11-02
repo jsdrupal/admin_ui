@@ -16,8 +16,8 @@ export default () => (
       */
 
       html {
-        font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto,
-          Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto,
+          Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
         font-size: 100%;
         font-weight: normal;
         font-style: normal;
@@ -125,8 +125,8 @@ export default () => (
         margin-left: 20px; /* LTR */
       }
 
-      [dir="rtl"] dl dd,
-      [dir="rtl"] dl dl {
+      [dir='rtl'] dl dd,
+      [dir='rtl'] dl dl {
         margin-right: 20px;
       }
 
@@ -181,7 +181,7 @@ export default () => (
         list-style-image: none;
       }
 
-      [dir="rtl"] ul {
+      [dir='rtl'] ul {
         margin-right: 1.5em;
         margin-left: 0;
         padding-right: 0;
@@ -189,7 +189,7 @@ export default () => (
 
       /* This is required to win over specificity of [dir="rtl"] ul */
 
-      [dir="rtl"] .messages__list {
+      [dir='rtl'] .messages__list {
         margin-right: 0;
       }
 
@@ -199,7 +199,7 @@ export default () => (
         list-style-type: decimal;
       }
 
-      [dir="rtl"] ol {
+      [dir='rtl'] ol {
         margin-right: 2em;
         margin-left: 0;
       }
