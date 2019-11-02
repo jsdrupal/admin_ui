@@ -10,3 +10,4 @@ dependencies:
 #  - jsonapi_tables:jsonapi_tables
 #  - jsonapi_support:jsonapi_support
 #  - openapi:openapi
+- jsonapi_cross_bundles:jsonapi_cross_bundles

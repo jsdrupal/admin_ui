@@ -18,17 +18,12 @@ class JsonapiSupportServiceProvider extends ServiceProviderBase {
    * {@inheritdoc}
    */
   public function alter(ContainerBuilder $container) {
-    if ($container->has('jsonapi.resource_type.repository')) {
-      // Override the class used for Jsonapi request repository.
-      $definition = $container->getDefinition('jsonapi.resource_type.repository');
-      $definition->setClass(ResourceTypeRepository::class);
-    }
-
-    if ($container->has('jsonapi.request_handler')) {
-      // Override the class used for Jsonapi request handler.
-      $definition = $container->getDefinition('jsonapi.request_handler');
-      $definition->setClass(JsonApiRequestHandler::class);
-    }
+    // @TODO add back support for config entities
+    // if ($container->has('jsonapi.request_handler')) {
+    //   // Override the class used for Jsonapi request handler.
+    //   $definition = $container->getDefinition('jsonapi.request_handler');
+    //   $definition->setClass(JsonApiRequestHandler::class);
+    // }
   }
 
 }
