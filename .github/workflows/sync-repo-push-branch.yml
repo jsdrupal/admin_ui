@@ -25,6 +25,7 @@ jobs:
           git checkout -b temp-local-branch
           GIT_SSH_COMMAND=${GIT_SSH_COMMAND} git push drupal temp-local-branch:${BRANCH}-src
           # Install dependencies
+          yarn install --pure-lockfile
           # Run the build
           yarn build
           # Push to the build artifacts branch
